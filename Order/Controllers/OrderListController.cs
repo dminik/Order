@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Orders.Filters;
 using Orders.Models;
 
 namespace Orders.Controllers
@@ -36,8 +35,7 @@ namespace Orders.Controllers
             return new OrderItemDto(orderItem);
         }
 
-        // PUT api/OrderItem/5
-        [ValidateHttpAntiForgeryToken]
+        // PUT api/OrderItem/5        
         public HttpResponseMessage PutOrderItem(int id, OrderItemDto orderItemDto)
         {
             if (!ModelState.IsValid)
@@ -66,8 +64,7 @@ namespace Orders.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // POST api/OrderItem
-        [ValidateHttpAntiForgeryToken]
+        // POST api/OrderItem        
         public HttpResponseMessage PostOrderItem(OrderItemDto orderItemDto)
         {
             if (!ModelState.IsValid)
@@ -85,8 +82,7 @@ namespace Orders.Controllers
             return response;
         }
 
-        // DELETE api/OrderItem/5
-        [ValidateHttpAntiForgeryToken]
+        // DELETE api/OrderItem/5        
         public HttpResponseMessage DeleteOrderItem(int id)
         {
             OrderItem orderItem = db.OrderItems.Find(id);

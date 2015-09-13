@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Orders.Filters;
 using Orders.Models;
 
 namespace Orders.Controllers
@@ -18,8 +17,7 @@ namespace Orders.Controllers
         // GET api/TodoList
         public IEnumerable<TodoListDto> GetTodoLists()
         {
-            return db.TodoLists.Include("Todos")
-                .Where(u => u.UserId == User.Identity.Name)
+            return db.TodoLists.Include("Todos")                
                 .OrderByDescending(u => u.TodoListId)
                 .AsEnumerable()
                 .Select(todoList => new TodoListDto(todoList));
@@ -34,17 +32,10 @@ namespace Orders.Controllers
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            if (todoList.UserId != User.Identity.Name)
-            {
-                // Trying to modify a record that does not belong to the user
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.Unauthorized));
-            }
-
             return new TodoListDto(todoList);
         }
 
-        // PUT api/TodoList/5
-        [ValidateHttpAntiForgeryToken]
+        // PUT api/TodoList/5        
         public HttpResponseMessage PutTodoList(int id, TodoListDto todoListDto)
         {
             if (!ModelState.IsValid)
@@ -58,12 +49,7 @@ namespace Orders.Controllers
             }
 
             TodoList todoList = todoListDto.ToEntity();
-            if (db.Entry(todoList).Entity.UserId != User.Identity.Name)
-            {
-                // Trying to modify a record that does not belong to the user
-                return Request.CreateResponse(HttpStatusCode.Unauthorized);
-            }
-
+            
             db.Entry(todoList).State = EntityState.Modified;
 
             try
@@ -78,16 +64,14 @@ namespace Orders.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // POST api/TodoList
-        [ValidateHttpAntiForgeryToken]
+        // POST api/TodoList        
         public HttpResponseMessage PostTodoList(TodoListDto todoListDto)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
-            todoListDto.UserId = User.Identity.Name;
+            
             TodoList todoList = todoListDto.ToEntity();
             db.TodoLists.Add(todoList);
             db.SaveChanges();
@@ -98,8 +82,7 @@ namespace Orders.Controllers
             return response;
         }
 
-        // DELETE api/TodoList/5
-        [ValidateHttpAntiForgeryToken]
+        // DELETE api/TodoList/5        
         public HttpResponseMessage DeleteTodoList(int id)
         {
             TodoList todoList = db.TodoLists.Find(id);
@@ -107,13 +90,7 @@ namespace Orders.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-
-            if (db.Entry(todoList).Entity.UserId != User.Identity.Name)
-            {
-                // Trying to delete a record that does not belong to the user
-                return Request.CreateResponse(HttpStatusCode.Unauthorized);
-            }
-
+           
             TodoListDto todoListDto = new TodoListDto(todoList);
             db.TodoLists.Remove(todoList);
 

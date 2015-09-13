@@ -13,9 +13,7 @@ namespace Orders.Models
     public class TodoList
     {
         public int TodoListId { get; set; }
-
-        [Required]
-        public string UserId { get; set; }
+       
 
         [Required]
         public string Title { get; set; }

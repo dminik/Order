@@ -16,8 +16,7 @@ namespace Orders.Models
 
         public TodoListDto(TodoList todoList)
         {
-            TodoListId = todoList.TodoListId;
-            UserId = todoList.UserId;
+            TodoListId = todoList.TodoListId;            
             Title = todoList.Title;
             Todos = new List<TodoItemDto>();
             foreach (TodoItem item in todoList.Todos)
@@ -28,9 +27,7 @@ namespace Orders.Models
 
         [Key]
         public int TodoListId { get; set; }
-
-        [Required]
-        public string UserId { get; set; }
+        
 
         [Required]
         public string Title { get; set; }
@@ -42,8 +39,7 @@ namespace Orders.Models
             TodoList todo = new TodoList
             {
                 Title = Title,
-                TodoListId = TodoListId,
-                UserId = UserId,
+                TodoListId = TodoListId,                
                 Todos = new List<TodoItem>()
             };
             foreach (TodoItemDto item in Todos)

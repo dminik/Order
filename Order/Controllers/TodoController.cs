@@ -4,12 +4,10 @@ using System.Data.Entity.Infrastructure;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Orders.Filters;
 using Orders.Models;
 
 namespace Orders.Controllers
-{    
-    [ValidateHttpAntiForgeryToken]
+{       
     public class TodoController : ApiController
     {
         private TodoItemContext db = new TodoItemContext();
@@ -32,13 +30,7 @@ namespace Orders.Controllers
             if (todoList == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            if (todoList.UserId != User.Identity.Name)
-            {
-                // Trying to modify a record that does not belong to the user
-                return Request.CreateResponse(HttpStatusCode.Unauthorized);
-            }
+            }            
 
             // Need to detach to avoid duplicate primary key exception when SaveChanges is called
             db.Entry(todoList).State = EntityState.Detached;
@@ -70,12 +62,7 @@ namespace Orders.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            if (todoList.UserId != User.Identity.Name)
-            {
-                // Trying to add a record that does not belong to the user
-                return Request.CreateResponse(HttpStatusCode.Unauthorized);
-            }
-
+            
             TodoItem todoItem = todoItemDto.ToEntity();
 
             // Need to detach to avoid loop reference exception during JSON serialization
@@ -98,11 +85,7 @@ namespace Orders.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            if (db.Entry(todoItem.TodoList).Entity.UserId != User.Identity.Name)
-            {
-                // Trying to delete a record that does not belong to the user
-                return Request.CreateResponse(HttpStatusCode.Unauthorized);
-            }
+            
 
             TodoItemDto todoItemDto = new TodoItemDto(todoItem);
             db.TodoItems.Remove(todoItem);

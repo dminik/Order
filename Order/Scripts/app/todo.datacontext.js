@@ -26,8 +26,8 @@ window.todoApp.datacontext = (function () {
             todoListsObservable(mappedTodoLists);
         }
 
-        function getFailed() {
-            errorObservable("Error retrieving todo lists.");
+        function getFailed(data) {
+            errorObservable(data.responseText);
         }
     }
     function createTodoItem(data) {
