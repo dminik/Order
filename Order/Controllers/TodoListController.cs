@@ -10,8 +10,7 @@ using Orders.Filters;
 using Orders.Models;
 
 namespace Orders.Controllers
-{
-    [Authorize]
+{   
     public class TodoListController : ApiController
     {
         private TodoItemContext db = new TodoItemContext();

@@ -8,8 +8,7 @@ using Orders.Filters;
 using Orders.Models;
 
 namespace Orders.Controllers
-{
-    [Authorize]
+{    
     [ValidateHttpAntiForgeryToken]
     public class TodoController : ApiController
     {
