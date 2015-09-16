@@ -13,5 +13,11 @@ namespace Orders.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+
+        public ActionResult Index2(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
     }
 }

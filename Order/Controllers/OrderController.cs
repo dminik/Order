@@ -10,12 +10,12 @@ using Orders.Models;
 
 namespace Orders.Controllers
 {   
-    public class OrderListController : ApiController
+    public class OrderController : ApiController
     {        
         private OrderItemContext db = new OrderItemContext();
 
-        // GET api/OrderList
-        public IEnumerable<OrderItemDto> GetOrderLists()
+        // GET api/Order
+        public IEnumerable<OrderItemDto> GetOrders()
         {
             return db.OrderItems                
                 .OrderByDescending(u => u.Id)
@@ -23,8 +23,8 @@ namespace Orders.Controllers
                 .Select(orderList => new OrderItemDto(orderList));
         }
 
-        // GET api/OrderItem/5
-        public OrderItemDto GetOrderItem(int id)
+        // GET api/Order/5
+        public OrderItemDto GetOrder(int id)
         {
             var orderItem = db.OrderItems.Find(id);
             if (orderItem == null)
@@ -35,8 +35,26 @@ namespace Orders.Controllers
             return new OrderItemDto(orderItem);
         }
 
-        // PUT api/OrderItem/5        
-        public HttpResponseMessage PutOrderItem(int id, OrderItemDto orderItemDto)
+        // POST api/Order      
+        public HttpResponseMessage PostOrder(OrderItemDto orderItemDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            OrderItem orderItem = orderItemDto.ToEntity();
+            db.OrderItems.Add(orderItem);
+            db.SaveChanges();
+            orderItemDto.Id = orderItem.Id;
+
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, orderItemDto);
+            response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = orderItemDto.Id }));
+            return response;
+        }
+
+        // PUT api/Order/5        
+        public HttpResponseMessage PutOrder(int id, OrderItemDto orderItemDto)
         {
             if (!ModelState.IsValid)
             {
@@ -63,27 +81,9 @@ namespace Orders.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-
-        // POST api/OrderItem        
-        public HttpResponseMessage PostOrderItem(OrderItemDto orderItemDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-
-            OrderItem orderItem = orderItemDto.ToEntity();
-            db.OrderItems.Add(orderItem);
-            db.SaveChanges();
-            orderItemDto.Id = orderItem.Id;
-
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, orderItemDto);
-            response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = orderItemDto.Id }));
-            return response;
-        }
-
+        
         // DELETE api/OrderItem/5        
-        public HttpResponseMessage DeleteOrderItem(int id)
+        public HttpResponseMessage DeleteOrder(int id)
         {
             OrderItem orderItem = db.OrderItems.Find(id);
             if (orderItem == null)

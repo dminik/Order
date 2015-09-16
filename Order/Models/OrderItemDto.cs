@@ -18,7 +18,7 @@ namespace Orders.Models
             Id = item.Id;
             Text = item.Text;
             Email = item.Email;
-            Status = item.Status;
+            Status = item.Status.ToString();
         }
 
         [Key]
@@ -28,7 +28,7 @@ namespace Orders.Models
         public string Text { get; set; }
 
         [Required]
-        public OrderStatus Status { get; set; }
+        public String Status { get; set; }
 
         [Required]
         public string Email { get; set; }
@@ -40,7 +40,7 @@ namespace Orders.Models
                 Id = Id,
                 Text = Text,
                 Email = Email,
-                Status = Status,
+                Status = (OrderStatus) Enum.Parse(typeof(OrderStatus), Status, true),
             };
         }
     }
