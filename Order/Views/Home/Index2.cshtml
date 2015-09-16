@@ -46,6 +46,12 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 data: {},
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
                 success: function (data) {
                     self.Orders(data); //Put the response in ObservableArray
                 }
@@ -72,6 +78,12 @@
                         type: 'POST',
                         contentType: 'application/json; charset=utf-8',
                         data: ko.toJSON(Order),
+                        beforeSend: function () {
+                            $('#loader').show();
+                        },
+                        complete: function () {
+                            $('#loader').hide();
+                        },
                         success: function (data) {
                              alert('added');
                             self.Orders.push(data);
@@ -103,6 +115,12 @@
                         type: 'DELETE',
                         contentType: 'application/json; charset=utf-8',
                         data: ko.toJSON(id),
+                        beforeSend: function () {
+                            $('#loader').show();
+                        },
+                        complete: function () {
+                            $('#loader').hide();
+                        },
                         success: function (data) {
                             self.Orders.remove(Order);                            
                         }
@@ -129,6 +147,12 @@
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8',
                     data: ko.toJSON(Order),
+                    beforeSend: function () {
+                        $('#loader').show();
+                    },
+                    complete: function () {
+                        $('#loader').hide();
+                    },
                     success: function (data) {
                         self.Orders.removeAll();
                         self.Orders(data); //Put the response in ObservableArray
@@ -170,6 +194,9 @@
     <h2>Knockout CRUD Operations with MVC4</h2>
 
     <h3>List of Orders</h3>
+    <div id="loader">
+        <img alt="activity indicator" src="~/Images/ajax-loader.gif">
+    </div>
 
     <table id="orders1" data-bind="visible: Orders().length > 0">
         <thead>
