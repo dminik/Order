@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders", "Order\Orders.csproj", "{35579878-001A-4759-9AB8-8E768DE2B727}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Web", "Orders.Web\Orders.Web.csproj", "{35579878-001A-4759-9AB8-8E768DE2B727}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Resources", "Orders.Resources\Orders.Resources.csproj", "{018D3A50-EED6-4651-A02C-8504CA52666B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{35579878-001A-4759-9AB8-8E768DE2B727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35579878-001A-4759-9AB8-8E768DE2B727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35579878-001A-4759-9AB8-8E768DE2B727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018D3A50-EED6-4651-A02C-8504CA52666B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018D3A50-EED6-4651-A02C-8504CA52666B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018D3A50-EED6-4651-A02C-8504CA52666B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018D3A50-EED6-4651-A02C-8504CA52666B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

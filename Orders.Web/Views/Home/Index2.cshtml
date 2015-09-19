@@ -1,0 +1,130 @@
+﻿@using Orders.Resources
+
+@*
+
+    --- MVC САЙТ ---
+
+    Локализация
+        Клиентская ОК
+            Вынести в файл ОК
+        Серверная
+            Вынести в ресурсы
+            Подключить определение по урлу и переключение
+
+    Сервисный слой сайта
+    Валидация
+    Стили
+
+    --- WCF СЕРВИС ---
+
+    Сервисный слой
+    Репозиторий
+    Валидация основная, т.к. к этому сервису подключаем консоль и сайта и десктоп
+
+*@
+
+
+
+<header>
+    <h1>@ViewBag.Title</h1>
+</header>
+
+<div id="body">
+
+    <h2>@Orders.Resources.Resource.AppName</h2>
+
+    <h3>List of Orders</h3>
+    <div id="loader">
+        <img alt="activity indicator" src="~/Images/ajax-loader.gif">
+    </div>
+
+    <table id="orders1" data-bind="visible: Orders().length > 0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Text</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: Orders">
+            <tr>
+                <td data-bind="text: Id"></td>
+                <td data-bind="text: Text"></td>
+                <td data-bind="text: Email"></td>
+                <td data-bind="text: Status"></td>
+                <td>
+                    <button data-bind="click: $root.edit">Edit</button>
+                    <button data-bind="click: $root.delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>       
+    </table>        
+
+    <div data-bind="if: Order">
+        <div>
+            <h2>Update Order</h2>
+        </div>
+        <div>
+            <label for="Id" data-bind="visible: false">Id</label>
+            <label data-bind="text: Order().Id, visible: false"></label>
+
+        </div>
+        <div>
+            <label for="name">Text</label>
+            <input data-bind="value: Order().Text" type="text" title="Text" />
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input data-bind="value: Order().Email" type="text" title="Email" />
+        </div>
+
+        <div>
+            <label for="status">Status</label>
+            <input data-bind="value: Order().Status" type="text" title="Status" />
+        </div>
+        
+        <div>
+            <button data-bind="click: $root.update">Update</button>
+            <button data-bind="click: $root.cancel">Cancel</button>
+        </div>
+    </div>
+
+    <div data-bind="ifnot: Order()">
+        <div>
+            <h2>Add New Order</h2>
+        </div>
+        <div>
+            <label for="text">Text</label>
+            <input data-bind="value: $root.Text" type="text" title="Text" />
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input data-bind="value: $root.Email" type="text" title="Email" />
+        </div>
+
+        <div>
+            <label for="status">Status</label>
+            <input data-bind="value: $root.Status" type="text" title="Status" value="New" />
+        </div>
+        <br />
+        <div>
+            <button data-bind="click: $root.create">Save</button>
+            <button data-bind="click: $root.reset">Reset</button>
+        </div>
+    </div>
+
+</div>
+
+@section scripts {   
+    <script>       
+        require(["orders"],
+            function (orders) {
+                orders.init(require, "En");
+            }
+        );                      
+    </script>
+}
