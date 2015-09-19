@@ -277,8 +277,8 @@
     <Content Include="Scripts\lib\knockout-2.2.0.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\lib\require.js" />
-    <Content Include="Scripts\Localization\ordersLocalizationRu.js" />
-    <Content Include="Scripts\Localization\ordersLocalizationEn.js" />
+    <Content Include="Scripts\Localization\ordersLocalization_ru.js" />
+    <Content Include="Scripts\Localization\ordersLocalization_en.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -316,6 +316,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Shared\_LangSelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

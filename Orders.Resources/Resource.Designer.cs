@@ -68,5 +68,122 @@ namespace Orders.Resources {
                 return ResourceManager.GetString("AppName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string LangSelector_En {
+            get {
+                return ResourceManager.GetString("LangSelector_En", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Русский.
+        /// </summary>
+        public static string LangSelector_Ru {
+            get {
+                return ResourceManager.GetString("LangSelector_Ru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Действия.
+        /// </summary>
+        public static string OrderActions {
+            get {
+                return ResourceManager.GetString("OrderActions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создать.
+        /// </summary>
+        public static string OrderCreate {
+            get {
+                return ResourceManager.GetString("OrderCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удалить.
+        /// </summary>
+        public static string OrderDelete {
+            get {
+                return ResourceManager.GetString("OrderDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактировать.
+        /// </summary>
+        public static string OrderEdit {
+            get {
+                return ResourceManager.GetString("OrderEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string OrderEmail {
+            get {
+                return ResourceManager.GetString("OrderEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ИД.
+        /// </summary>
+        public static string OrderId {
+            get {
+                return ResourceManager.GetString("OrderId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Очистить.
+        /// </summary>
+        public static string OrderReset {
+            get {
+                return ResourceManager.GetString("OrderReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сохранить.
+        /// </summary>
+        public static string OrderSave {
+            get {
+                return ResourceManager.GetString("OrderSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Статус.
+        /// </summary>
+        public static string OrderStatus {
+            get {
+                return ResourceManager.GetString("OrderStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Текст.
+        /// </summary>
+        public static string OrderText {
+            get {
+                return ResourceManager.GetString("OrderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обновить.
+        /// </summary>
+        public static string OrderUpdate {
+            get {
+                return ResourceManager.GetString("OrderUpdate", resourceCulture);
+            }
+        }
     }
 }

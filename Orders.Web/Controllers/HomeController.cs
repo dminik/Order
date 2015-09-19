@@ -6,11 +6,7 @@
     using System.Web.Mvc;
 
     public class HomeController : BaseController
-    {
-        public string CurrentLangCode { get; protected set; }
-
-        //public Language CurrentLang { get; protected set; }
-
+    {                
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             if (requestContext.HttpContext.Request.Url != null)
@@ -22,18 +18,14 @@
             var routeCulture = routeData != null ? routeData.Values["lang"].ToString() : null;
             var languageCookie = requestContext.HttpContext.Request.Cookies["lang"];
             var userLanguages = requestContext.HttpContext.Request.UserLanguages;
-           
-            var cultureInfo = new CultureInfo(
-                routeCulture ?? (languageCookie != null
-                   ? languageCookie.Value
-                   : userLanguages != null
-                       ? userLanguages[0]
-                       : "ru")
-            );
+
+	        var lang = routeCulture ?? (languageCookie != null ? languageCookie.Value : userLanguages != null ? userLanguages[0] : "ru");
+			ViewBag.Lang = lang.ToLower();
+			var cultureInfo = new CultureInfo(lang);
 
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureInfo.Name);
-
+	        
             base.Initialize(requestContext);
         }
 

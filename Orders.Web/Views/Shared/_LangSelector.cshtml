@@ -1,0 +1,13 @@
+﻿@using Orders.Resources
+<ul>
+	<li>
+		<a href="@Url.Action("ChangeCulture", "Home", new { lang = "en" })">
+			@Resource.LangSelector_En
+		</a>
+	</li>
+	<li>
+		<a href="@Url.Action("ChangeCulture", "Home", new { lang = "ru" })">
+			@Resource.LangSelector_Ru
+		</a>
+	</li>
+</ul>

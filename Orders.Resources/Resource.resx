@@ -120,4 +120,43 @@
   <data name="AppName" xml:space="preserve">
     <value>Заказы</value>
   </data>
+  <data name="LangSelector_En" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LangSelector_Ru" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="OrderActions" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="OrderCreate" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="OrderDelete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="OrderEdit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="OrderEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="OrderId" xml:space="preserve">
+    <value>ИД</value>
+  </data>
+  <data name="OrderReset" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="OrderSave" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="OrderText" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="OrderUpdate" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
 </root>
