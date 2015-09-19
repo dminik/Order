@@ -9,10 +9,10 @@
     Локализация
 --		Клиентская ОК
 --	        Вынести в файл ОК
-        Серверная
+--      Серверная
 --          Вынести в ресурсы
 --          Подключить определение по урлу и переключение
-			Для API
+--			Для API
 
     Сервисный слой сайта
     Валидация
@@ -26,11 +26,6 @@
 
 *@
 
-
-
-<header>
-    <h1>@Resource.AppName</h1>
-</header>
 
 <div id="body">
 
@@ -114,9 +109,9 @@
 
         <div>
             <label for="status">@Resource.OrderStatus</label>
-            <input data-bind="value: $root.Status" type="text" value="New" />
-        </div>
-        <br />
+	        <input data-bind="value: $root.Status" type="text" value="New"/>
+		</div>
+        
         <div>
             <button data-bind="click: $root.create">@Resource.OrderSave</button>
             <button data-bind="click: $root.reset">@Resource.OrderReset</button>
