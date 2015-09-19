@@ -1,9 +1,9 @@
-﻿define(["jquery", "ko"],
-    function($, ko) {
-        "use strict";
+﻿"use strict";
 
-        function OrderViewModel() {
-
+define(["jquery", "ko"],
+    function ($, ko) {        
+                      
+        function OrderViewModel(orderLocalization) {
             //Make the self as 'this' reference
             var self = this;
             //Declare observable which will be bind with UI
@@ -113,8 +113,8 @@
             }
 
             // Edit order details
-            self.edit = function(Order) {
-                self.Order(Order);
+            self.edit = function(order) {
+                self.Order(order);
 
             }
 
@@ -140,7 +140,7 @@
                             self.Orders.push(order);
                             //self.Orders(data); //Put the response in ObservableArray
                             self.Order(null);
-                            //alert("Record Updated Successfully");
+                            alert(orderLocalization.Updated);
 
                         }
                     })
@@ -165,11 +165,14 @@
 
             }
         }
+                
+        var init = function (require, lang) {
 
-        var init = function() {
-            var viewModel = new OrderViewModel();
-            ko.applyBindings(viewModel);
-        }
+            require(['/Scripts/Localization/ordersLocalization' + lang + '.js'], function (requireorderLocalization) {
+                var viewModel = new OrderViewModel(requireorderLocalization);
+                ko.applyBindings(viewModel);
+            });            
+        };
 
         return {
             init: init

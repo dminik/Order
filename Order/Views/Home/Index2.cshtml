@@ -1,10 +1,35 @@
-﻿<header>
+﻿@*
+    
+--- MVC САЙТ ---
+
+Локализация
+    Клиентская
+        Вынести в файл
+    Серверная
+        Вынести в ресурсы
+        Подключить определение по урлу и переключение
+          
+Сервисный слой сайта
+Валидация
+Стили
+    
+--- WCF СЕРВИС ---    
+
+Сервисный слой
+Репозиторий
+Валидация основная, т.к. к этому сервису подключаем консоль и сайта и десктоп
+
+*@
+
+
+
+<header>
     <h1>@ViewBag.Title</h1>
 </header>
 
 <div id="body">
 
-    <h2>Knockout CRUD Operations with MVC4</h2>
+    <h2>Заказы</h2>
 
     <h3>List of Orders</h3>
     <div id="loader">
@@ -27,19 +52,13 @@
                 <td data-bind="text: Text"></td>
                 <td data-bind="text: Email"></td>
                 <td data-bind="text: Status"></td>
-
                 <td>
                     <button data-bind="click: $root.edit">Edit</button>
                     <button data-bind="click: $root.delete">Delete</button>
-
                 </td>
-
             </tr>
-        </tbody>
-       
-    </table>
-    <br />
-    <div style="border-top: solid 2px  #282828; width: 430px; height: 10px">&nbsp;</div>
+        </tbody>       
+    </table>        
 
     <div data-bind="if: Order">
         <div>
@@ -63,13 +82,11 @@
         <div>
             <label for="status">Status</label>
             <input data-bind="value: Order().Status" type="text" title="Status" />
-
         </div>
-        <br />
+        
         <div>
             <button data-bind="click: $root.update">Update</button>
             <button data-bind="click: $root.cancel">Cancel</button>
-
         </div>
     </div>
 
@@ -95,18 +112,17 @@
         <div>
             <button data-bind="click: $root.create">Save</button>
             <button data-bind="click: $root.reset">Reset</button>
-
         </div>
     </div>
 
 </div>
 
-
-
-
-@section scripts {
-
-    @Scripts.Render("~/bundles/knockout")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/require")    
+@section scripts {   
+    <script>       
+        require(["orders"],
+            function (orders) {
+                orders.init(require, "En");
+            }
+        );                      
+    </script>
 }

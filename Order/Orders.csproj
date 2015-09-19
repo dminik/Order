@@ -276,6 +276,7 @@
     <Content Include="Scripts\lib\knockout-2.2.0.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\lib\require.js" />
+    <Content Include="Scripts\Localization\ordersLocalizationEn.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
