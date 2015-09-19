@@ -2,6 +2,7 @@
 {
     using System.Globalization;
     using System.Threading;
+    using System.Web;
     using System.Web.Mvc;
 
     public class HomeController : BaseController
@@ -17,21 +18,34 @@
                 HostName = requestContext.HttpContext.Request.Url.Authority;
             }
 
-            if (requestContext.RouteData.Values["lang"] != null && requestContext.RouteData.Values["lang"] as string != "null")
-            {
-                CurrentLangCode = requestContext.RouteData.Values["lang"] as string;
-                //CurrentLang = Repository.Languages.FirstOrDefault(p => p.Code == CurrentLangCode);
+            var routeData = requestContext.RouteData;
+            var routeCulture = routeData != null ? routeData.Values["lang"].ToString() : null;
+            var languageCookie = requestContext.HttpContext.Request.Cookies["lang"];
+            var userLanguages = requestContext.HttpContext.Request.UserLanguages;
+           
+            var cultureInfo = new CultureInfo(
+                routeCulture ?? (languageCookie != null
+                   ? languageCookie.Value
+                   : userLanguages != null
+                       ? userLanguages[0]
+                       : "ru")
+            );
 
-                var ci = new CultureInfo(CurrentLangCode);
-                Thread.CurrentThread.CurrentUICulture = ci;
-                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
-            }
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cultureInfo.Name);
+
             base.Initialize(requestContext);
         }
 
-        public ActionResult Index(string returnUrl)
+        public ActionResult ChangeCulture(string lang)
         {
-            //Orders.Resources
+            var langCookie = new HttpCookie("lang", lang) { HttpOnly = true };
+            Response.AppendCookie(langCookie);
+            return RedirectToAction("Index2", "Home", new { lang = lang });
+        }
+
+        public ActionResult Index(string returnUrl)
+        {           
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

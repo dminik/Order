@@ -32,6 +32,20 @@
 <div id="body">
 
     @DateTime.Now.ToLongDateString()
+
+    <ul>
+        <li>
+            <a href="@Url.Action("ChangeCulture", "Home", new { lang = "en" })">
+                English
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("ChangeCulture", "Home", new { lang = "ru" })">
+                Русский
+            </a>
+        </li>
+    </ul>
+
     <h2>@Resource.AppName</h2>
 
     <h3>List of Orders</h3>
