@@ -3,7 +3,9 @@ namespace Orders.Web.Models
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class OrderItemDto
+    using Orders.Web.Domain.Models;
+
+	public class OrderItemDto
     {
         /// <summary>
         /// Data transfer object for <see cref="TodoItem"/>

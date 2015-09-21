@@ -1,14 +1,16 @@
 ﻿namespace Orders.Web.Models
 {
-    using System.Data.Entity;
+	using System.Data.Entity;
 
-    public class OrderItemContext : DbContext
-    {
-        public OrderItemContext()
-            : base("name=DefaultConnection")
-        {
-        }
+	using Orders.Web.Domain.Models;
 
-        public DbSet<OrderItem> OrderItems { get; set; }
-    }
+	public class OrderItemContext : DbContext
+	{
+		public OrderItemContext()
+			: base("name=DefaultConnection")
+		{
+		}
+
+		public DbSet<OrderItem> OrderItems { get; set; }
+	}
 }

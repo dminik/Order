@@ -9,7 +9,9 @@
 	using System.Net.Http;
 	using System.Web.Http;
 
-	using Orders.Web.Models;
+	using global::Orders.Web.Models;
+
+	using Orders.Web.Domain.Models;
 
 	public class OrderController : ApiController
 	{        
@@ -18,6 +20,9 @@
 		// GET api/Order
 		public IEnumerable<OrderItemDto> GetOrders()
 		{
+			//var serv = new ServiceReference.OrderServiceClient();
+			//serv.GetOrders();
+
 			return db.OrderItems                
 				.OrderByDescending(u => u.Id)
 				.AsEnumerable()
