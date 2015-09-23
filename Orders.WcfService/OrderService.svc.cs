@@ -1,37 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
+using AutoMapper;
+using DataLayer.Repository.Repositories;
 
 namespace Orders.WcfService
-{
-	// NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-	// NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
+{	
 	public class Service1 : IOrderService
 	{
-		public string GetData(int value)
-		{
-			return string.Format("You entered: {0}", value);
-		}
+		private readonly IOrderRepository _orderRepository;
 
-		public CompositeType GetDataUsingDataContract(CompositeType composite)
+		public Service1()
 		{
-			if (composite == null)
-			{
-				throw new ArgumentNullException("composite");
-			}
-			if (composite.BoolValue)
-			{
-				composite.StringValue += "Suffix";
-			}
-			return composite;
+			_orderRepository = new OrderRepository();
 		}
-
+		
 		public List<OrderItem> GetOrders()
 		{
-			return new List<OrderItem>();
+			var orderEntities =_orderRepository.GetAll().ToList();
+
+			Mapper.CreateMap<DataLayer.Context.OrderItems, OrderItem>();
+			var orderItems = Mapper.Map<List<DataLayer.Context.OrderItems>, IEnumerable<OrderItem>>(orderEntities).ToList();
+
+			return orderItems;
 		}
 	}
 }

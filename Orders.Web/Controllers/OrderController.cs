@@ -1,10 +1,13 @@
 ﻿using System.Data.Entity;
 
+using AutoMapper;
+
+using Orders.Web.Services;
+
 namespace Orders.Web.Controllers
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Data;
 	using System.Data.Entity.Infrastructure;
 	using System.Linq;
 	using System.Net;
@@ -22,13 +25,18 @@ namespace Orders.Web.Controllers
 		// GET api/Order
 		public IEnumerable<OrderItemDto> GetOrders()
 		{
-			//var serv = new ServiceReference.OrderServiceClient();
-			//serv.GetOrders();
+			// todo инжектить через параметр
+			var serv = new OrderService();
+			var orders = serv.GetOrders().ToList();
 
-			return db.OrderItems                
-				.OrderByDescending(u => u.Id)
-				.AsEnumerable()
-				.Select(orderList => new OrderItemDto(orderList));
+			Mapper.CreateMap<OrderItem, OrderItemDto>();
+			var orderDtoList = Mapper.Map<List<OrderItem>, IEnumerable<OrderItemDto>>(orders);
+
+			//return db.OrderItems                
+			//	.OrderByDescending(u => u.Id)
+			//	.AsEnumerable()
+			//	.Select(orderList => new OrderItemDto(orderList));
+			return orderDtoList;
 		}
 
 		// GET api/Order/5

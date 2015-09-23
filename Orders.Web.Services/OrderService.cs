@@ -14,12 +14,14 @@
 
 		public OrderService()
 		{
+			// todo инжектить через параметр
 			_wcfService = new OrderServiceClient();		    
 		}
 
 		public IEnumerable<OrderItem> GetOrders()
 		{
 			var itemsDto = _wcfService.GetOrders().ToList();
+
 			Mapper.CreateMap<Service_References.ServiceReference.OrderItem, OrderItem>();			
 			var items = Mapper.Map<List<Service_References.ServiceReference.OrderItem>, IEnumerable<OrderItem>>(itemsDto);
 

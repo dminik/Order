@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Web", "Orders.Web\Orders.Web.csproj", "{35579878-001A-4759-9AB8-8E768DE2B727}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -20,6 +20,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Web.Domain.Models", "Orders.Web.Domain.Models\Orders.Web.Domain.Models.csproj", "{816613A7-486A-4150-88F1-89A192F5696D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.DataLayer.Context", "Orders.DataLayer.Context\Orders.DataLayer.Context.csproj", "{740A48A6-2021-457E-B61F-F2DCA0BF683B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayer", "DataLayer", "{0D88F54A-54B8-498A-99C7-B7D75ABAE744}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{5B03A97E-DDFF-40AC-8FEF-1A6C56BFF681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer.Repository", "DataLayer\DataLayer.Repository.csproj", "{3A257008-C6AD-4847-BC87-5862F6FF8114}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,8 +109,28 @@ Global
 		{740A48A6-2021-457E-B61F-F2DCA0BF683B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{740A48A6-2021-457E-B61F-F2DCA0BF683B}.Staging|Any CPU.ActiveCfg = Release|Any CPU
 		{740A48A6-2021-457E-B61F-F2DCA0BF683B}.Staging|Any CPU.Build.0 = Release|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Development_dmin|Any CPU.ActiveCfg = Development_dmin|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Development_dmin|Any CPU.Build.0 = Development_dmin|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Development|Any CPU.ActiveCfg = Development|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Development|Any CPU.Build.0 = Development|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Production|Any CPU.ActiveCfg = Production|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Production|Any CPU.Build.0 = Production|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{3A257008-C6AD-4847-BC87-5862F6FF8114}.Staging|Any CPU.Build.0 = Staging|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35579878-001A-4759-9AB8-8E768DE2B727} = {5B03A97E-DDFF-40AC-8FEF-1A6C56BFF681}
+		{11BE5830-865B-4022-89FB-30F5BDC703CD} = {5B03A97E-DDFF-40AC-8FEF-1A6C56BFF681}
+		{F75348FE-0023-4F2D-A048-412D923F17CE} = {5B03A97E-DDFF-40AC-8FEF-1A6C56BFF681}
+		{816613A7-486A-4150-88F1-89A192F5696D} = {5B03A97E-DDFF-40AC-8FEF-1A6C56BFF681}
+		{740A48A6-2021-457E-B61F-F2DCA0BF683B} = {0D88F54A-54B8-498A-99C7-B7D75ABAE744}
+		{3A257008-C6AD-4847-BC87-5862F6FF8114} = {0D88F54A-54B8-498A-99C7-B7D75ABAE744}
 	EndGlobalSection
 EndGlobal
