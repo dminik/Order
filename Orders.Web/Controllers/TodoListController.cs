@@ -1,4 +1,6 @@
-﻿namespace Orders.Web.Controllers
+﻿using System.Data.Entity;
+
+namespace Orders.Web.Controllers
 {
     using System;
     using System.Collections.Generic;
