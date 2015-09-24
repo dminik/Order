@@ -5,14 +5,19 @@ using DataLayer.Repository.Repositories;
 
 namespace Orders.WcfService
 {	
-	public class Service1 : IOrderService
+	public class Service1 : IOrderWcfService
 	{
 		private readonly IOrderRepository _orderRepository;
 
-		public Service1()
+		public Service1(IOrderRepository orderRepository)
 		{
-			_orderRepository = new OrderRepository();
+			_orderRepository = orderRepository;
 		}
+
+		//public Service1()
+		//{
+			
+		//}
 		
 		public List<OrderItem> GetOrders()
 		{

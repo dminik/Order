@@ -21,13 +21,17 @@ namespace Orders.Web.Controllers
 	public class OrderController : ApiController
 	{        
 		private OrderItemContext db = new OrderItemContext();
-		
+		private readonly IOrderService _orderService;
+
+		public OrderController(IOrderService orderService)
+		{
+			_orderService = orderService;
+		}
+
 		// GET api/Order
 		public IEnumerable<OrderItemDto> GetOrders()
-		{
-			// todo инжектить через параметр
-			var serv = new OrderService();
-			var orders = serv.GetOrders().ToList();
+		{			
+			var orders = _orderService.GetOrders().ToList();
 
 			Mapper.CreateMap<OrderItem, OrderItemDto>();
 			var orderDtoList = Mapper.Map<List<OrderItem>, IEnumerable<OrderItemDto>>(orders);

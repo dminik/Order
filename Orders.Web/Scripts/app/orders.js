@@ -38,7 +38,10 @@ define(["jquery", "ko"],
 				success: function(data) {
 					self.Orders(data); //Put the response in ObservableArray
 				}
-			});
+			}).fail(
+						function (xhr, textStatus, err) {
+							alert(xhr.responseText); 
+						});;
 
 			//// Calculate Total of Status After Initialization
 			//self.Total = ko.computed(function () {

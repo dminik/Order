@@ -7,60 +7,22 @@
       <xsd:import schemaLocation="http://localhost:81/OrderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Orders.WcfService" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IOrderService_GetData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetData" />
-  </wsdl:message>
-  <wsdl:message name="IOrderService_GetData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataResponse" />
-  </wsdl:message>
-  <wsdl:message name="IOrderService_GetDataUsingDataContract_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
-  </wsdl:message>
-  <wsdl:message name="IOrderService_GetDataUsingDataContract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
-  </wsdl:message>
-  <wsdl:message name="IOrderService_GetOrders_InputMessage">
+  <wsdl:message name="IOrderWcfService_GetOrders_InputMessage">
     <wsdl:part name="parameters" element="tns:GetOrders" />
   </wsdl:message>
-  <wsdl:message name="IOrderService_GetOrders_OutputMessage">
+  <wsdl:message name="IOrderWcfService_GetOrders_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOrdersResponse" />
   </wsdl:message>
-  <wsdl:portType name="IOrderService">
-    <wsdl:operation name="GetData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetData" message="tns:IOrderService_GetData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetDataResponse" message="tns:IOrderService_GetData_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetDataUsingDataContract" message="tns:IOrderService_GetDataUsingDataContract_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetDataUsingDataContractResponse" message="tns:IOrderService_GetDataUsingDataContract_OutputMessage" />
-    </wsdl:operation>
+  <wsdl:portType name="IOrderWcfService">
     <wsdl:operation name="GetOrders">
-      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetOrders" message="tns:IOrderService_GetOrders_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetOrdersResponse" message="tns:IOrderService_GetOrders_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/GetOrders" message="tns:IOrderWcfService_GetOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/GetOrdersResponse" message="tns:IOrderWcfService_GetOrders_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IOrderService" type="tns:IOrderService">
+  <wsdl:binding name="BasicHttpBinding_IOrderWcfService" type="tns:IOrderWcfService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetData">
-      <soap:operation soapAction="http://tempuri.org/IOrderService/GetData" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <soap:operation soapAction="http://tempuri.org/IOrderService/GetDataUsingDataContract" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetOrders">
-      <soap:operation soapAction="http://tempuri.org/IOrderService/GetOrders" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IOrderWcfService/GetOrders" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -70,7 +32,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="Service1">
-    <wsdl:port name="BasicHttpBinding_IOrderService" binding="tns:BasicHttpBinding_IOrderService">
+    <wsdl:port name="BasicHttpBinding_IOrderWcfService" binding="tns:BasicHttpBinding_IOrderWcfService">
       <soap:address location="http://localhost:81/OrderService.svc" />
     </wsdl:port>
   </wsdl:service>
