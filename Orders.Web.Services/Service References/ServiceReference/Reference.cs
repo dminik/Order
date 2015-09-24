@@ -111,10 +111,16 @@ namespace Orders.Web.Services.ServiceReference {
     public interface IOrderWcfService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/GetOrders", ReplyAction="http://tempuri.org/IOrderWcfService/GetOrdersResponse")]
-        Orders.Web.Services.ServiceReference.OrderItem[] GetOrders();
+        System.Collections.Generic.List<Orders.Web.Services.ServiceReference.OrderItem> GetOrders();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/GetOrders", ReplyAction="http://tempuri.org/IOrderWcfService/GetOrdersResponse")]
-        System.Threading.Tasks.Task<Orders.Web.Services.ServiceReference.OrderItem[]> GetOrdersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Orders.Web.Services.ServiceReference.OrderItem>> GetOrdersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Ping", ReplyAction="http://tempuri.org/IOrderWcfService/PingResponse")]
+        string Ping(string str);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Ping", ReplyAction="http://tempuri.org/IOrderWcfService/PingResponse")]
+        System.Threading.Tasks.Task<string> PingAsync(string str);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -144,12 +150,20 @@ namespace Orders.Web.Services.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public Orders.Web.Services.ServiceReference.OrderItem[] GetOrders() {
+        public System.Collections.Generic.List<Orders.Web.Services.ServiceReference.OrderItem> GetOrders() {
             return base.Channel.GetOrders();
         }
         
-        public System.Threading.Tasks.Task<Orders.Web.Services.ServiceReference.OrderItem[]> GetOrdersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Orders.Web.Services.ServiceReference.OrderItem>> GetOrdersAsync() {
             return base.Channel.GetOrdersAsync();
+        }
+        
+        public string Ping(string str) {
+            return base.Channel.Ping(str);
+        }
+        
+        public System.Threading.Tasks.Task<string> PingAsync(string str) {
+            return base.Channel.PingAsync(str);
         }
     }
 }

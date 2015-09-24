@@ -10,6 +10,9 @@ namespace Orders.WcfService
 	{
 		[OperationContract]
 		List<OrderItem> GetOrders();
+
+		[OperationContract]
+		string Ping(string str);
 	}
 	
 	[DataContract]

@@ -29,7 +29,7 @@ namespace Orders.Web.IoC
 			var container = builder.Build();
 			GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
-			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+			//DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 		}
 	}
 }

@@ -2,11 +2,11 @@
 
 @*
 
-    --- MVC САЙТ ---
+	--- MVC САЙТ ---
 	
 	Выпадающий список для Статуса
 
-    Локализация
+	Локализация
 --		Клиентская ОК
 --	        Вынести в файл ОК
 --      Серверная
@@ -14,118 +14,119 @@
 --          Подключить определение по урлу и переключение
 --			Для API
 
-    Сервисный слой сайта
-    Валидация
-    Стили
+	Сервисный слой сайта
+	Валидация
+	Стили
 
-    --- WCF СЕРВИС ---
+	--- WCF СЕРВИС ---
 
-    Сервисный слой
-    Репозиторий
-    Валидация основная, т.к. к этому сервису подключаем консоль и сайта и десктоп
+	Сервисный слой
+	Репозиторий
+	Валидация основная, т.к. к этому сервису подключаем консоль и сайта и десктоп
 
 *@
 
 
 <div id="body">
 
-    @DateTime.Now.ToLongDateString()
+	@DateTime.Now.ToLongDateString()
 
-    @Html.Partial("_LangSelector")
+	@Html.Partial("_LangSelector")
 
-    <h2>@Resource.AppName</h2>
-    
-    <div id="loader">
-        <img alt="activity indicator" src="~/Images/ajax-loader.gif">
-    </div>
+	<h2>@Resource.AppName</h2>
+	
+	<div id="loader">
+		<img alt="activity indicator" src="~/Images/ajax-loader.gif">
+	</div>
 
-    <table id="orders1" data-bind="visible: Orders().length > 0">
-        <thead>
-            <tr>
-                <th>@Resource.OrderId</th>
-                <th>@Resource.OrderText</th>
-                <th>@Resource.OrderEmail</th>
-                <th>@Resource.OrderStatus</th>
-                <th>@Resource.OrderActions</th>
-            </tr>
-        </thead>
-        <tbody data-bind="foreach: Orders">
-            <tr>
-                <td data-bind="text: Id"></td>
-                <td data-bind="text: Text"></td>
-                <td data-bind="text: Email"></td>
-                <td data-bind="text: Status"></td>
-                <td>
-                    <button data-bind="click: $root.edit">@Resource.OrderEdit</button>
-                    <button data-bind="click: $root.delete">@Resource.OrderDelete</button>
-                </td>
-            </tr>
-        </tbody>       
-    </table>        
+	<table id="orders1" data-bind="visible: Orders().length > 0">
+		<thead>
+			<tr>
+				<th>@Resource.OrderId</th>
+				<th>@Resource.OrderText</th>
+				<th>@Resource.OrderEmail</th>
+				<th>@Resource.OrderStatus</th>
+				<th>@Resource.OrderActions</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: Orders">
+			<tr>
+				<td data-bind="text: Id"></td>
+				<td data-bind="text: Text"></td>
+				<td data-bind="text: Email"></td>
+				<td data-bind="text: Status"></td>
+				<td>
+					<button data-bind="click: $root.edit">@Resource.OrderEdit</button>
+					<button data-bind="click: $root.delete">@Resource.OrderDelete</button>
+				</td>
+			</tr>
+		</tbody>       
+	</table>        
 
-    <div data-bind="if: Order">
-        <div>
-            <h2>Update Order</h2>
-        </div>
-        <div>
-            <label for="Id" data-bind="visible: false">Id</label>
-            <label data-bind="text: Order().Id, visible: false"></label>
-
-        </div>
-        <div>
-            <label for="name">@Resource.OrderText</label>
-			<input data-bind="value: Order().Text" type="text" />
-        </div>
-
-        <div>
-            <label for="email">@Resource.OrderEmail</label>
-            <input data-bind="value: Order().Email" type="text" />
-        </div>
-
-        <div>
-            <label for="status">@Resource.OrderStatus</label>
-            <input data-bind="value: Order().Status" type="text" />
-        </div>
-        
-        <div>
-            <button data-bind="click: $root.update">Update</button>
-            <button data-bind="click: $root.cancel">Cancel</button>
-        </div>
-    </div>
-
-    <div data-bind="ifnot: Order()">
-        <div>
-            <h2>@Resource.OrderCreate</h2>
-        </div>
-        <div>
-            <label for="text">@Resource.OrderText</label>
-            <input data-bind="value: $root.Text" type="text" />
-        </div>
-
-        <div>
-            <label for="email">@Resource.OrderEmail</label>
-            <input data-bind="value: $root.Email" type="text" />
-        </div>
-
-        <div>
-            <label for="status">@Resource.OrderStatus</label>
-	        <input data-bind="value: $root.Status" type="text" value="New"/>
+	<div data-bind="if: Order">
+		<div>
+			<h2>Update Order</h2>
 		</div>
-        
-        <div>
-            <button data-bind="click: $root.create">@Resource.OrderSave</button>
-            <button data-bind="click: $root.reset">@Resource.OrderReset</button>
-        </div>
-    </div>
+		<div>
+			<label for="Id" data-bind="visible: false">Id</label>
+			<label data-bind="text: Order().Id, visible: false"></label>
+
+		</div>
+		<div>
+			<label for="name">@Resource.OrderText</label>
+			<input data-bind="value: Order().Text" type="text" />
+		</div>
+
+		<div>
+			<label for="email">@Resource.OrderEmail</label>
+			<input data-bind="value: Order().Email" type="text" />
+		</div>
+
+		<div>
+			<label for="status">@Resource.OrderStatus</label>
+			<input data-bind="value: Order().Status" type="text" />
+		</div>
+		
+		<div>
+			<button data-bind="click: $root.update">Update</button>
+			<button data-bind="click: $root.cancel">Cancel</button>
+		</div>
+	</div>
+
+	<div data-bind="ifnot: Order()">
+		<div>
+			<h2>@Resource.OrderCreate</h2>
+		</div>
+		<div>
+			<label for="text">@Resource.OrderText</label>
+			<input data-bind="value: $root.Text" type="text" />
+		</div>
+
+		<div>
+			<label for="email">@Resource.OrderEmail</label>
+			<input data-bind="value: $root.Email" type="text" />
+		</div>
+
+		<div>
+			<label for="status">@Resource.OrderStatus</label>
+			<input data-bind="value: $root.Status" type="text" value="New"/>
+		</div>
+		
+		<div>
+			<button data-bind="click: $root.create">@Resource.OrderSave</button>
+			<button data-bind="click: $root.reset">@Resource.OrderReset</button>
+			<button data-bind="click: $root.ping">Ping</button>
+		</div>
+	</div>
 
 </div>
 
 @section scripts {   
-    <script>       
-        require(["orders"],
-            function (orders) {
-                orders.init(require, '@ViewBag.Lang');
-            }
-        );                      
-    </script>
+	<script>       
+		require(["orders"],
+			function (orders) {
+				orders.init(require, '@ViewBag.Lang');
+			}
+		);                      
+	</script>
 }

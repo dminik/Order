@@ -6,5 +6,6 @@
 	public interface IOrderService
 	{
 		IEnumerable<OrderItem> GetOrders();
+		string Ping(string str);
 	}
 }

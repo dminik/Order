@@ -149,6 +149,27 @@ define(["jquery", "ko"],
 							alert(err);
 						});
 			}
+
+			self.ping = function () {				
+				$.ajax({
+					url: '/api/Order/Ping',
+					cache: false,
+					type: 'GET',									
+					beforeSend: function () {
+						$('#loader').show();
+					},
+					complete: function () {
+						$('#loader').hide();
+					},
+					success: function (data) {
+						alert(data + " ok");
+					}
+				})
+					.fail(
+						function (xhr, textStatus, err) {
+							alert("Error: " + xhr.responseText);
+						});
+			}
 			
 			// Reset order details
 			self.reset = function() {

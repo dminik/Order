@@ -13,11 +13,6 @@ namespace Orders.WcfService
 		{
 			_orderRepository = orderRepository;
 		}
-
-		//public Service1()
-		//{
-			
-		//}
 		
 		public List<OrderItem> GetOrders()
 		{
@@ -27,6 +22,11 @@ namespace Orders.WcfService
 			var orderItems = Mapper.Map<List<DataLayer.Context.OrderItems>, IEnumerable<OrderItem>>(orderEntities).ToList();
 
 			return orderItems;
+		}
+
+		public string Ping(string str)
+		{
+			return str;
 		}
 	}
 }

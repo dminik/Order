@@ -13,16 +13,35 @@
   <wsdl:message name="IOrderWcfService_GetOrders_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOrdersResponse" />
   </wsdl:message>
+  <wsdl:message name="IOrderWcfService_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOrderWcfService">
     <wsdl:operation name="GetOrders">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/GetOrders" message="tns:IOrderWcfService_GetOrders_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/GetOrdersResponse" message="tns:IOrderWcfService_GetOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/Ping" message="tns:IOrderWcfService_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/PingResponse" message="tns:IOrderWcfService_Ping_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOrderWcfService" type="tns:IOrderWcfService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetOrders">
       <soap:operation soapAction="http://tempuri.org/IOrderWcfService/GetOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://tempuri.org/IOrderWcfService/Ping" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

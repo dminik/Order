@@ -28,5 +28,10 @@ namespace Orders.Web.Services
 
 			return items;
 		}
+
+		public string Ping(string str)
+		{
+			return _wcfService.Ping(str);
+		}
 	}
 }
