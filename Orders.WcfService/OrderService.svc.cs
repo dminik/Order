@@ -16,7 +16,7 @@ namespace Orders.WcfService
 		
 		public List<OrderItem> GetOrders()
 		{
-			var orderEntities =_orderRepository.GetAll().ToList();
+			var orderEntities = _orderRepository.GetAll().ToList();
 
 			Mapper.CreateMap<DataLayer.Context.OrderItems, OrderItem>();
 			var orderItems = Mapper.Map<List<DataLayer.Context.OrderItems>, IEnumerable<OrderItem>>(orderEntities).ToList();

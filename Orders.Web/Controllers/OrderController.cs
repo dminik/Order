@@ -1,5 +1,7 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
+
+using Orders.Web.Domain.Models;
+using Orders.Web.Models;
 
 using Orders.Web.Services;
 
@@ -8,10 +10,6 @@ namespace Orders.Web.Controllers
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Web.Http;
-
-	using global::Orders.Web.Models;
-
-	using Orders.Web.Domain.Models;
 
 	public class OrderController : ApiController
 	{        		

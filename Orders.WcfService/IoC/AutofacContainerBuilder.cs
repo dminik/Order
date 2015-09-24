@@ -17,7 +17,7 @@ namespace Orders.WcfService.IoC
 			builder.RegisterModule(new RepositoryModule());
 
 			//builder.RegisterType(typeof(Service1)).As(typeof(IOrderWcfService)).SingleInstance();
-			builder.RegisterType<Orders.WcfService.Service1>().AsSelf();;
+			builder.RegisterType<Orders.WcfService.Service1>();
 
 			// register types
 			//builder.RegisterType<EuropeanCarProvider>().As<ICarProvider>();

@@ -13,23 +13,18 @@ namespace Orders.Web.IoC
 	public class IoCConfig
 	{
 		public static void Register()
-		{
-			
+		{			
 			var builder = new ContainerBuilder();
 
 			builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
+			builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
 			builder.RegisterModule(new ServiceAutofaqModule());
-
-			// builder.RegisterType(typeof(UserIdentity)).As(typeof(IUserIdentity)).InstancePerHttpRequest();
-
-
-			builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
 			var container = builder.Build();
 			GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
-			//DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 		}
 	}
 }

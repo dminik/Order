@@ -1,4 +1,4 @@
-﻿using Orders.Web.Services.ServiceReference;
+﻿using Orders.Web.Services.OrderServiceReference;
 
 namespace Orders.Web.Services
 {
@@ -6,8 +6,6 @@ namespace Orders.Web.Services
 	using System.Linq;
 	using AutoMapper;
 	
-	using OrderItem = Orders.Web.Domain.Models.OrderItem;
-
 	public class OrderService : IOrderService
 	{
 		private readonly IOrderWcfService _wcfService;
@@ -16,15 +14,14 @@ namespace Orders.Web.Services
 		public OrderService(IOrderWcfService wcfService)
 		{
 			_wcfService = wcfService;
-
 		}
 
-		public IEnumerable<OrderItem> GetOrders()
+		public IEnumerable<Domain.Models.OrderItem> GetOrders()
 		{
 			var itemsDto = _wcfService.GetOrders().ToList();
 
-			Mapper.CreateMap<ServiceReference.OrderItem, OrderItem>();			
-			var items = Mapper.Map<List<ServiceReference.OrderItem>, IEnumerable<OrderItem>>(itemsDto);
+			Mapper.CreateMap<OrderItem, Domain.Models.OrderItem>();			
+			var items = Mapper.Map<List<OrderItem>, IEnumerable<Domain.Models.OrderItem>>(itemsDto);
 
 			return items;
 		}

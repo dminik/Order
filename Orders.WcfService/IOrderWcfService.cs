@@ -34,9 +34,13 @@ namespace Orders.WcfService
 	[DataContract]
 	public enum OrderStatus
 	{
+		[EnumMember]
 		NotSet = -1,
+		[EnumMember]
 		New = 1,
+		[EnumMember]
 		InProgress = 2,
+		[EnumMember]
 		Done = 3
 	}
 }
