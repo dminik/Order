@@ -39,23 +39,29 @@ namespace DataLayer.Repository.Repositories.Base
 
 		public virtual T Add(T entity)
 		{
-			return this.DbSet.Add(entity);
+			entity = this.DbSet.Add(entity);
+			Save();
+			return entity;
 		}
 
 		public virtual T Delete(T entity)
-		{			
-			return this.DbSet.Remove(entity);
+		{
+			entity = this.DbSet.Remove(entity);
+			Save();
+			return entity;
 		}
 
 		public virtual void Delete(TKeyType id)
 		{
 			var entityToDelete = this.DbSet.Find(id);
 			Delete(entityToDelete);
+			Save();
 		}
 
 		public virtual void Edit(T entity)
 		{
 			this.Context.Entry(entity).State = EntityState.Modified;
+			Save();
 		}
 
 		public virtual void Save()
