@@ -7,7 +7,7 @@
 		public static void Register(HttpConfiguration config)
 		{
 			config.Routes.MapHttpRoute(
-				name: "DefaultApi1",
+				name: "DefaultApi",
 				routeTemplate: "{lang}/{controller}/{action}",
 				defaults: new { id = RouteParameter.Optional },
 				constraints: new { action = @"Ping2|Ping" }

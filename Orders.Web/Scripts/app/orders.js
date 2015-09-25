@@ -43,23 +43,13 @@ define(["jquery", "ko"],
 							alert(xhr.responseText); 
 						});;
 
-			//// Calculate Total of Status After Initialization
-			//self.Total = ko.computed(function () {
-			//    var sum = 0;
-			//    var arr = self.Orders();
-			//    for (var i = 0; i < arr.length; i++) {
-			//        sum += arr[i].Status;
-			//    }
-			//    return sum;
-			//});
-
 			//Add New Item
 			self.create = function() {
 				Order.Id = '0';
 
 				if (Order.Text() != "" && Order.Status() != "" && Order.Email() != "") {
 					$.ajax({
-						url: '/api/Order/',
+						url: '/api/Order/0',
 						cache: false,
 						type: 'POST',
 						contentType: 'application/json; charset=utf-8',
@@ -87,6 +77,35 @@ define(["jquery", "ko"],
 					alert(resource.EnterAllFields);
 				}
 
+			}
+
+			// Update order details
+			self.update = function () {
+				var order = self.Order();
+
+				$.ajax({
+					url: '/api/Order/' + order.Id,
+					cache: false,
+					type: 'PUT',
+					contentType: 'application/json; charset=utf-8',
+					data: ko.toJSON(order),
+					beforeSend: function () {
+						$('#loader').show();
+					},
+					complete: function () {
+						$('#loader').hide();
+					},
+					success: function (data) {
+						self.Orders.remove(order);
+						self.Orders.push(order);
+						self.Order(null);
+						alert(resource.Updated);
+					}
+				})
+					.fail(
+						function (xhr, textStatus, err) {
+							alert(err);
+						});
 			}
 
 			// Delete order details
@@ -119,35 +138,6 @@ define(["jquery", "ko"],
 			self.edit = function(order) {
 				self.Order(order);
 
-			}
-
-			// Update order details
-			self.update = function() {
-				var order = self.Order();
-
-				$.ajax({
-						url: '/api/Order/' + order.Id,
-						cache: false,
-						type: 'PUT',
-						contentType: 'application/json; charset=utf-8',
-						data: ko.toJSON(order),
-						beforeSend: function() {
-							$('#loader').show();
-						},
-						complete: function() {
-							$('#loader').hide();
-						},
-						success: function(data) {                            
-							self.Orders.remove(order);
-							self.Orders.push(order);                            
-							self.Order(null);
-							alert(resource.Updated);
-						}
-					})
-					.fail(
-						function(xhr, textStatus, err) {
-							alert(err);
-						});
 			}
 
 			self.ping = function () {				

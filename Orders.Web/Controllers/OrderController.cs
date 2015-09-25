@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Net;
 using System.Net.Http;
 
@@ -45,6 +43,7 @@ namespace Orders.Web.Controllers
 		}
 
 		 // GET api/Order/5
+		[HttpGet]
 		public OrderItemDto GetOrder(int id)
 		{
 			var orderItem = _orderService.GetByKey(id);
@@ -56,8 +55,9 @@ namespace Orders.Web.Controllers
 			return new OrderItemDto(orderItem);
 		}
 
-		// POST api/Order      
-		public HttpResponseMessage PostOrder(OrderItemDto orderItemDto)
+		// POST api/Order     
+		[HttpPost]
+		public HttpResponseMessage PostOrder(int id, OrderItemDto orderItemDto)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -69,11 +69,12 @@ namespace Orders.Web.Controllers
 			orderItemDto.Id = orderItem.Id;
 
 			HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, orderItemDto);
-			response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = orderItemDto.Id }));
+			
 			return response;
 		}
 
-		// PUT api/Order/5        
+		// PUT api/Order/5    
+		[HttpPut]
 		public HttpResponseMessage PutOrder(int id, OrderItemDto orderItemDto)
 		{
 			if (!ModelState.IsValid)
@@ -94,7 +95,7 @@ namespace Orders.Web.Controllers
 		// DELETE api/OrderItem/5        
 		public HttpResponseMessage DeleteOrder(int id)
 		{
-			_orderService.GetByKey(id);
+			_orderService.Delete(id);
 			return Request.CreateResponse(HttpStatusCode.OK);
 		}
 

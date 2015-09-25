@@ -19,8 +19,7 @@ namespace Orders.Web.Models
             Email = item.Email;
             Status = item.Status.ToString();
         }
-
-        [Key]
+        
         public int Id { get; set; }
 
         [Required]
