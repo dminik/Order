@@ -2,17 +2,30 @@
 using System.Runtime.Serialization;
 using System.ServiceModel;
 
+using AutoMapper;
+
 namespace Orders.WcfService
-{
-	// NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+{	
 	[ServiceContract]
 	public interface IOrderWcfService
 	{
 		[OperationContract]
-		List<OrderItem> GetOrders();
+		string Ping(string str);
 
 		[OperationContract]
-		string Ping(string str);
+		List<OrderItem> GetOrders();		
+
+		[OperationContract]
+		OrderItem GetByKey(int id);
+
+		[OperationContract]
+		OrderItem Add(OrderItem item);
+
+		[OperationContract]
+		void Delete(int id);
+
+		[OperationContract]
+		void Update(OrderItem item);		
 	}
 	
 	[DataContract]
@@ -29,6 +42,18 @@ namespace Orders.WcfService
 
 		[DataMember]
 		public string Email { get; set; }
+
+		public DataLayer.Context.OrderItems ToEntity(OrderItem item)
+		{
+			Mapper.CreateMap<OrderItem, DataLayer.Context.OrderItems>();
+			return Mapper.Map<OrderItem, DataLayer.Context.OrderItems>(item);
+		}
+
+		public OrderItem FromEntity(DataLayer.Context.OrderItems entity)
+		{
+			Mapper.CreateMap<DataLayer.Context.OrderItems, OrderItem>();
+			return Mapper.Map<DataLayer.Context.OrderItems, OrderItem>(entity);
+		}
 	}
 
 	[DataContract]

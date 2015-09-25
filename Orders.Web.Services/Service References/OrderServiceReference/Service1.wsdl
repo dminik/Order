@@ -7,30 +7,79 @@
       <xsd:import schemaLocation="http://localhost:81/OrderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Orders.WcfService" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IOrderWcfService_GetOrders_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetOrders" />
-  </wsdl:message>
-  <wsdl:message name="IOrderWcfService_GetOrders_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetOrdersResponse" />
-  </wsdl:message>
   <wsdl:message name="IOrderWcfService_Ping_InputMessage">
     <wsdl:part name="parameters" element="tns:Ping" />
   </wsdl:message>
   <wsdl:message name="IOrderWcfService_Ping_OutputMessage">
     <wsdl:part name="parameters" element="tns:PingResponse" />
   </wsdl:message>
+  <wsdl:message name="IOrderWcfService_GetOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrders" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_GetOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_GetByKey_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByKey" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_GetByKey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_Add_InputMessage">
+    <wsdl:part name="parameters" element="tns:Add" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_Add_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="IOrderWcfService_Update_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOrderWcfService">
-    <wsdl:operation name="GetOrders">
-      <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/GetOrders" message="tns:IOrderWcfService_GetOrders_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/GetOrdersResponse" message="tns:IOrderWcfService_GetOrders_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="Ping">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/Ping" message="tns:IOrderWcfService_Ping_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/PingResponse" message="tns:IOrderWcfService_Ping_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/GetOrders" message="tns:IOrderWcfService_GetOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/GetOrdersResponse" message="tns:IOrderWcfService_GetOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByKey">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/GetByKey" message="tns:IOrderWcfService_GetByKey_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/GetByKeyResponse" message="tns:IOrderWcfService_GetByKey_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Add">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/Add" message="tns:IOrderWcfService_Add_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/AddResponse" message="tns:IOrderWcfService_Add_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/Delete" message="tns:IOrderWcfService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/DeleteResponse" message="tns:IOrderWcfService_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderWcfService/Update" message="tns:IOrderWcfService_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderWcfService/UpdateResponse" message="tns:IOrderWcfService_Update_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOrderWcfService" type="tns:IOrderWcfService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://tempuri.org/IOrderWcfService/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetOrders">
       <soap:operation soapAction="http://tempuri.org/IOrderWcfService/GetOrders" style="document" />
       <wsdl:input>
@@ -40,8 +89,35 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Ping">
-      <soap:operation soapAction="http://tempuri.org/IOrderWcfService/Ping" style="document" />
+    <wsdl:operation name="GetByKey">
+      <soap:operation soapAction="http://tempuri.org/IOrderWcfService/GetByKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add">
+      <soap:operation soapAction="http://tempuri.org/IOrderWcfService/Add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/IOrderWcfService/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="http://tempuri.org/IOrderWcfService/Update" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

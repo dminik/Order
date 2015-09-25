@@ -127,17 +127,41 @@ namespace Orders.Web.Services.OrderServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="OrderServiceReference.IOrderWcfService")]
     public interface IOrderWcfService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Ping", ReplyAction="http://tempuri.org/IOrderWcfService/PingResponse")]
+        string Ping(string str);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Ping", ReplyAction="http://tempuri.org/IOrderWcfService/PingResponse")]
+        System.Threading.Tasks.Task<string> PingAsync(string str);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/GetOrders", ReplyAction="http://tempuri.org/IOrderWcfService/GetOrdersResponse")]
         System.Collections.Generic.List<Orders.Web.Services.OrderServiceReference.OrderItem> GetOrders();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/GetOrders", ReplyAction="http://tempuri.org/IOrderWcfService/GetOrdersResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Orders.Web.Services.OrderServiceReference.OrderItem>> GetOrdersAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Ping", ReplyAction="http://tempuri.org/IOrderWcfService/PingResponse")]
-        string Ping(string str);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/GetByKey", ReplyAction="http://tempuri.org/IOrderWcfService/GetByKeyResponse")]
+        Orders.Web.Services.OrderServiceReference.OrderItem GetByKey(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Ping", ReplyAction="http://tempuri.org/IOrderWcfService/PingResponse")]
-        System.Threading.Tasks.Task<string> PingAsync(string str);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/GetByKey", ReplyAction="http://tempuri.org/IOrderWcfService/GetByKeyResponse")]
+        System.Threading.Tasks.Task<Orders.Web.Services.OrderServiceReference.OrderItem> GetByKeyAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Add", ReplyAction="http://tempuri.org/IOrderWcfService/AddResponse")]
+        Orders.Web.Services.OrderServiceReference.OrderItem Add(Orders.Web.Services.OrderServiceReference.OrderItem item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Add", ReplyAction="http://tempuri.org/IOrderWcfService/AddResponse")]
+        System.Threading.Tasks.Task<Orders.Web.Services.OrderServiceReference.OrderItem> AddAsync(Orders.Web.Services.OrderServiceReference.OrderItem item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Delete", ReplyAction="http://tempuri.org/IOrderWcfService/DeleteResponse")]
+        void Delete(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Delete", ReplyAction="http://tempuri.org/IOrderWcfService/DeleteResponse")]
+        System.Threading.Tasks.Task DeleteAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Update", ReplyAction="http://tempuri.org/IOrderWcfService/UpdateResponse")]
+        void Update(Orders.Web.Services.OrderServiceReference.OrderItem item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderWcfService/Update", ReplyAction="http://tempuri.org/IOrderWcfService/UpdateResponse")]
+        System.Threading.Tasks.Task UpdateAsync(Orders.Web.Services.OrderServiceReference.OrderItem item);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -167,6 +191,14 @@ namespace Orders.Web.Services.OrderServiceReference {
                 base(binding, remoteAddress) {
         }
         
+        public string Ping(string str) {
+            return base.Channel.Ping(str);
+        }
+        
+        public System.Threading.Tasks.Task<string> PingAsync(string str) {
+            return base.Channel.PingAsync(str);
+        }
+        
         public System.Collections.Generic.List<Orders.Web.Services.OrderServiceReference.OrderItem> GetOrders() {
             return base.Channel.GetOrders();
         }
@@ -175,12 +207,36 @@ namespace Orders.Web.Services.OrderServiceReference {
             return base.Channel.GetOrdersAsync();
         }
         
-        public string Ping(string str) {
-            return base.Channel.Ping(str);
+        public Orders.Web.Services.OrderServiceReference.OrderItem GetByKey(int id) {
+            return base.Channel.GetByKey(id);
         }
         
-        public System.Threading.Tasks.Task<string> PingAsync(string str) {
-            return base.Channel.PingAsync(str);
+        public System.Threading.Tasks.Task<Orders.Web.Services.OrderServiceReference.OrderItem> GetByKeyAsync(int id) {
+            return base.Channel.GetByKeyAsync(id);
+        }
+        
+        public Orders.Web.Services.OrderServiceReference.OrderItem Add(Orders.Web.Services.OrderServiceReference.OrderItem item) {
+            return base.Channel.Add(item);
+        }
+        
+        public System.Threading.Tasks.Task<Orders.Web.Services.OrderServiceReference.OrderItem> AddAsync(Orders.Web.Services.OrderServiceReference.OrderItem item) {
+            return base.Channel.AddAsync(item);
+        }
+        
+        public void Delete(int id) {
+            base.Channel.Delete(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteAsync(int id) {
+            return base.Channel.DeleteAsync(id);
+        }
+        
+        public void Update(Orders.Web.Services.OrderServiceReference.OrderItem item) {
+            base.Channel.Update(item);
+        }
+        
+        public System.Threading.Tasks.Task UpdateAsync(Orders.Web.Services.OrderServiceReference.OrderItem item) {
+            return base.Channel.UpdateAsync(item);
         }
     }
 }

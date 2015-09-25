@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="IoC\ServiceAutofaqModule.cs" />
     <Compile Include="IOrderService.cs" />
+    <Compile Include="MapperHelper.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\OrderServiceReference\Reference.cs">

@@ -1,4 +1,10 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Net;
+using System.Net.Http;
+
+using AutoMapper;
 
 using Orders.Web.Domain.Models;
 using Orders.Web.Models;
@@ -38,88 +44,59 @@ namespace Orders.Web.Controllers
 			return _orderService.Ping(str);
 		}
 
-		// GET api/Order/5
-		//public OrderItemDto GetOrder(int id)
-		//{
-		//	var orderItem = db.OrderItems.Find(id);
-		//	if (orderItem == null)
-		//	{
-		//		throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-		//	}
+		 // GET api/Order/5
+		public OrderItemDto GetOrder(int id)
+		{
+			var orderItem = _orderService.GetByKey(id);
+			if (orderItem == null)
+			{
+				throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+			}
 
-		//	return new OrderItemDto(orderItem);
-		//}
+			return new OrderItemDto(orderItem);
+		}
 
-		//// POST api/Order      
-		//public HttpResponseMessage PostOrder(OrderItemDto orderItemDto)
-		//{
-		//	if (!ModelState.IsValid)
-		//	{
-		//		return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-		//	}
+		// POST api/Order      
+		public HttpResponseMessage PostOrder(OrderItemDto orderItemDto)
+		{
+			if (!ModelState.IsValid)
+			{
+				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+			}
 
-		//	OrderItem orderItem = orderItemDto.ToEntity();
-		//	db.OrderItems.Add(orderItem);
-		//	db.SaveChanges();
-		//	orderItemDto.Id = orderItem.Id;
+			var orderItem = _orderService.Add(orderItemDto.ToEntity());
 
-		//	HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, orderItemDto);
-		//	response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = orderItemDto.Id }));
-		//	return response;
-		//}
+			orderItemDto.Id = orderItem.Id;
 
-		//// PUT api/Order/5        
-		//public HttpResponseMessage PutOrder(int id, OrderItemDto orderItemDto)
-		//{
-		//	if (!ModelState.IsValid)
-		//	{
-		//		return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-		//	}
+			HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, orderItemDto);
+			response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = orderItemDto.Id }));
+			return response;
+		}
 
-		//	if (id != orderItemDto.Id)
-		//	{
-		//		return Request.CreateResponse(HttpStatusCode.BadRequest);
-		//	}
+		// PUT api/Order/5        
+		public HttpResponseMessage PutOrder(int id, OrderItemDto orderItemDto)
+		{
+			if (!ModelState.IsValid)
+			{
+				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+			}
 
-		//	OrderItem orderItem = orderItemDto.ToEntity();
-			
-		//	db.Entry(orderItem).State = EntityState.Modified;
+			if (id != orderItemDto.Id)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest);
+			}
 
-		//	try
-		//	{
-		//		db.SaveChanges();
-		//	}
-		//	catch (DbUpdateConcurrencyException)
-		//	{
-		//		return Request.CreateResponse(HttpStatusCode.InternalServerError);
-		//	}
+			_orderService.Update(orderItemDto.ToEntity());
 
-		//	return Request.CreateResponse(HttpStatusCode.OK);
-		//}
+			return Request.CreateResponse(HttpStatusCode.OK);
+		}
 		
-		//// DELETE api/OrderItem/5        
-		//public HttpResponseMessage DeleteOrder(int id)
-		//{
-		//	OrderItem orderItem = db.OrderItems.Find(id);
-		//	if (orderItem == null)
-		//	{
-		//		return Request.CreateResponse(HttpStatusCode.NotFound);
-		//	}
-
-		//	var orderItemDto = new OrderItemDto(orderItem);
-		//	db.OrderItems.Remove(orderItem);
-
-		//	try
-		//	{
-		//		db.SaveChanges();
-		//	}
-		//	catch (DbUpdateConcurrencyException)
-		//	{
-		//		return Request.CreateResponse(HttpStatusCode.InternalServerError);
-		//	}
-
-		//	return Request.CreateResponse(HttpStatusCode.OK, orderItemDto);
-		//}
+		// DELETE api/OrderItem/5        
+		public HttpResponseMessage DeleteOrder(int id)
+		{
+			_orderService.GetByKey(id);
+			return Request.CreateResponse(HttpStatusCode.OK);
+		}
 
 		
 	}
