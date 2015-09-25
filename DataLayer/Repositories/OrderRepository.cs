@@ -2,7 +2,6 @@
 
 namespace DataLayer.Repository.Repositories
 {
-	using System.Linq;
 	using DataLayer.Repository.Repositories.Base;
 
 	public class OrderRepository : GenericRepository<OrderItems, int>, IOrderRepository
@@ -11,10 +10,5 @@ namespace DataLayer.Repository.Repositories
 			: base(context)
 		{
 		}
-
-		public OrderItems GetByPromoCode(string promoCode)
-		{
-			return FindBy(x => x.Text == promoCode).SingleOrDefault();
-		}		
 	}
 }

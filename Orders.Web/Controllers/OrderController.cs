@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 
 using AutoMapper;
@@ -34,7 +33,6 @@ namespace Orders.Web.Controllers
 
 			return orderDtoList;
 		}
-
 
 		[HttpGet]
 		public string Ping(string str)

@@ -11,15 +11,15 @@
 
 			routes.MapRoute(
 				name: "lang",
-				url: "{lang}/Home/{action}",
-				defaults: new { controller = "Home", action = "Index2" },
+				url: "{lang}/{controller}/{action}",
+				defaults: new { controller = "Home", action = "Index" },
 				constraints: new { lang = @"ru|en" }
 			);
 
 			routes.MapRoute(
 				name: "Default",
-				url: "Home/Index2/",
-				defaults: new { controller = "Home", action = "Index2", lang = "ru" }
+				url: "{controller}/{action}",
+				defaults: new { controller = "Home", action = "Index", lang = "ru" }
 			);
         }
     }

@@ -323,3 +323,7 @@ td li::after {
 td li:last-child::after {
     content: '';
 }
+
+.button-block {
+	margin-top: 10px;
+}

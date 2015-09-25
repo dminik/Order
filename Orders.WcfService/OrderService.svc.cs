@@ -4,7 +4,6 @@ using DataLayer.Repository.Repositories;
 
 namespace Orders.WcfService
 {
-
 	public class Service1 : IOrderWcfService		
 	{
 		private readonly IOrderRepository _orderRepository;

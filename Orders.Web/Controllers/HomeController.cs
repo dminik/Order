@@ -33,16 +33,10 @@
 		{
 			var langCookie = new HttpCookie("lang", lang) { HttpOnly = true };
 			Response.AppendCookie(langCookie);
-			return RedirectToAction("Index2", "Home", new { lang = lang });
+			return RedirectToAction("Index", "Home", new { lang = lang });
 		}
-
+		
 		public ActionResult Index(string returnUrl)
-		{           
-			ViewBag.ReturnUrl = returnUrl;
-			return View();
-		}
-
-		public ActionResult Index2(string returnUrl)
 		{
 			ViewBag.ReturnUrl = returnUrl;
 			return View();

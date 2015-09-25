@@ -129,6 +129,9 @@
   <data name="OrderActions" xml:space="preserve">
     <value>Actions</value>
   </data>
+  <data name="OrderCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="OrderCreate" xml:space="preserve">
     <value>Create</value>
   </data>

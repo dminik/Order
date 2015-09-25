@@ -6,6 +6,6 @@ namespace DataLayer.Repository.Repositories
 
 	public interface IOrderRepository : IGenericRepository<OrderItems, int>
 	{
-		OrderItems GetByPromoCode(string promoCode);			
+			
 	}
 }
